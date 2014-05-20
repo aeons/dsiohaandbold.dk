@@ -1,0 +1,54 @@
+---
+layout: default
+---
+{% capture js %}
+horses are neat
+{% endcapture %}
+<div class="post">
+
+  <header class="post-header">
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+  </header>
+
+  <article class="post-content">
+  {{ content }}
+  </article>
+
+  <h4>Stilling</h4>
+  <table class="table" id="standings">
+    <thead>
+        <tr>
+            <th><span class="sort" data-sort="position">Position</span></th>
+            <th><span class="sort" data-sort="team">Hold</span></th>
+            <th><span class="sort" data-sort="matches">K</span></th>
+            <th><span class="sort" data-sort="won">V</span></th>
+            <th><span class="sort" data-sort="tied">U</span></th>
+            <th><span class="sort" data-sort="lost">T</span></th>
+            <th><span class="sort" data-sort="score">Score</span></th>
+            <th><span class="sort" data-sort="points">P</span></th>
+        </tr>
+    </thead>
+    <tbody class="list">
+        {% assign stillinger = site.stillinger | where: 'league', page.team | sort: 'position' %}
+        {% for s in stillinger %}
+        <tr>
+            <td class="position">{{s.position}}</td>
+            <td class="team">{{s.team}}</td>
+            <td class="matches">{{s.matches}}</td>
+            <td class="won">{{s.won}}</td>
+            <td class="tied">{{s.tied}}</td>
+            <td class="lost">{{s.lost}}</td>
+            <td class="score">{{ s.score_out | minus: s.score_in }} ({{s.score_out}} - {{s.score_in}})</td>
+            <td class="points">{{s.points}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  <h4>Kampe</h4>
+  
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+{% javascript team %}
