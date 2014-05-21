@@ -2,3 +2,5 @@ _site
 _vendor/bundle
 .bundle
 .editorconfig
+
+_data/generated

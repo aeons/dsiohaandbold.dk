@@ -1,7 +1,17 @@
 ---
 layout: team
-title: 1. damer
-team: 1-damer
-permalink: /hold/1-damer/
+order: 4
+title: Serie 1 herrer
+team_id: 1-herrer
+team_name: 1. herrer
+permalink: /hold/1-herrer/
+team_photo:
+dhf:
+  team_id: 175543
+  league_id: 24558
+  ics_key: ab505950-8e8b-4337-a32f-ebbecc391fee
+coaches:
+- "[Lars Hestehave]({{site.url}}/personer/lars-hestehave)"
+- "[Tina Glad Thrane]({{site.url}}/personer/tina-glad-thrane)"
 ---
-1. damer spiller i 3. division.
+1\. herrer spiller i serie 1.

@@ -1,21 +1,20 @@
 ---
 layout: default
 ---
-{% capture js %}
-horses are neat
-{% endcapture %}
 <div class="post">
-
   <header class="post-header">
     <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
   </header>
 
   <article class="post-content">
   {{ content }}
-  </article>
-
-  <h4>Stilling</h4>
+  
+  <p>Træner(e): {{ page.coaches | array_to_sentence | markdownify }}</p>
+  <h3>Stilling</h3>
+  {% assign stillinger = site.data.standings | where: 'league', page.team | sort: 'position' %}
+  {% if stillinger == empty %}
+  <p>Ingen stillinger fundet.</p>
+  {% else %}
   <table class="table" id="standings">
     <thead>
         <tr>
@@ -25,12 +24,11 @@ horses are neat
             <th><span class="sort" data-sort="won">V</span></th>
             <th><span class="sort" data-sort="tied">U</span></th>
             <th><span class="sort" data-sort="lost">T</span></th>
-            <th><span class="sort" data-sort="score">Score</span></th>
+            <th colspan="4">Score</th>
             <th><span class="sort" data-sort="points">P</span></th>
         </tr>
     </thead>
     <tbody class="list">
-        {% assign stillinger = site.stillinger | where: 'league', page.team | sort: 'position' %}
         {% for s in stillinger %}
         <tr>
             <td class="position">{{s.position}}</td>
@@ -39,15 +37,25 @@ horses are neat
             <td class="won">{{s.won}}</td>
             <td class="tied">{{s.tied}}</td>
             <td class="lost">{{s.lost}}</td>
-            <td class="score">{{ s.score_out | minus: s.score_in }} ({{s.score_out}} - {{s.score_in}})</td>
+            <td>{{ s.score_out | minus: s.score_in | positive_plus }}</td>
+            <td>({{s.score_out}}</td>
+            <td>-</td>
+            <td>{{s.score_in}})</td>
             <td class="points">{{s.points}}</td>
         </tr>
         {% endfor %}
     </tbody>
   </table>
+  {% endif %}
 
-  <h4>Kampe</h4>
-  
+  <h3>Kampe</h3>
+  {% assign kampe = site.data.kampe | where: 'league', page.team | sort: 'date' %}
+  {% if kampe == empty %}
+  <p>Ingen kampe fundet</p>
+  {% else %}
+  {% endif %}
+  <em>Ovenstående information er hentet fra <a href="http://kampe.dhf.dk/dhf/Turneringer-og-resultater/Hold-Information.aspx?HoldId={{page.team_id}}">DHFs Håndboldinfo</a></em>
+  </article>
 </div>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>

@@ -8,13 +8,9 @@ url: "http://localhost:4000"
 # Build settings
 markdown: kramdown
 permalink: pretty
+gems:
+- jekyll-assets
 
 collections:
     hold:
         output: true
-    stillinger:
-        output: false
-    kampe:
-        output: false
-    personer:
-        output: false

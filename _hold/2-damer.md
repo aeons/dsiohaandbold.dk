@@ -1,7 +1,17 @@
 ---
 layout: team
-title: 1. damer
-team: 1-damer
-permalink: /hold/1-damer/
+order: 2
+title: Serie 1 damer
+team_id: 2-damer
+team_name: 2. damer
+permalink: /hold/2-damer/
+team_photo:
+dhf:
+  team_id: 175396
+  league_id: 24496
+  ics_key: e98dc427-d8af-4c3e-a3c9-4758c6077335
+coaches:
+- Flemming Ottendahl Jakobsen
+- Jacob Boutrup
 ---
-1. damer spiller i 3. division.
+2\. damer spiller i serie 1.

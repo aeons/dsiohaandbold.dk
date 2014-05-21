@@ -1,8 +1,6 @@
 ---
 title: Bestyrelsen
 permalink: /klubben/bestyrelsen/
+layout: people
 ---
 ## Bestyrelsesmedlemmer
-{% for p in site.personer %}
-{{ p }}
-{% endfor %}

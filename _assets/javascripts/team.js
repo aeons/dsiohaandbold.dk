@@ -6,7 +6,6 @@ var standingsList = new List('standings', {
         'won',
         'tied',
         'lost',
-        'score',
         'points'
     ]
 });
