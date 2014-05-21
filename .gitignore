@@ -2,5 +2,5 @@ _site
 _vendor/bundle
 .bundle
 .editorconfig
-
+node_modules
 _data/generated
