@@ -113,8 +113,8 @@ def create_calendar(matches)
         day_matches.push({
           'type'    => 'msg_cup',
           'matches' => msg_matches,
-          'start'   => msg_matches.min_by { |m| m['dtstart']}['dtstart'].sub(/^.*T/, ''),
-          'end'     => msg_matches.max_by { |m| m['dtend']}['dtend'].sub(/^.*T/, '')
+          'dtstart'   => msg_matches.min_by { |m| m['dtstart']}['dtstart'],
+          'dtend'     => msg_matches.max_by { |m| m['dtend']}['dtend']
           })
       end
     end
@@ -146,9 +146,9 @@ end
 
 options = {
   :team_folder    => '_hold',
-  :standings_file => '_data/standings.yml',
-  :matches_file   => '_data/matches.yml',
-  :calendar_file  => '_data/calendar.yml'
+  :standings_file => '_data/generated/standings.yml',
+  :matches_file   => '_data/generated/matches.yml',
+  :calendar_file  => '_data/generated/calendar.yml'
 }
 
 OptionParser.new do |opts|
@@ -171,4 +171,8 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-scrape(options)
+# scrape(options)
+
+matches = YAML.load_file '_data/generated/matches.yml'
+calendar = create_calendar matches
+File.open(options[:calendar_file], 'w') { |f| YAML.dump(calendar, f)}

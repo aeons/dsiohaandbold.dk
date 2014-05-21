@@ -8,10 +8,10 @@ layout: default
 
   <article class="post-content">
   {{ content }}
-  
+
   <p>Træner(e): {{ page.coaches | array_to_sentence | markdownify }}</p>
   <h3>Stilling</h3>
-  {% assign stillinger = site.data.standings | where: 'league', page.team | sort: 'position' %}
+  {% assign stillinger = site.data.generated.standings | where: 'league', page.team_id | sort: 'position' %}
   {% if stillinger == empty %}
   <p>Ingen stillinger fundet.</p>
   {% else %}
@@ -49,10 +49,37 @@ layout: default
   {% endif %}
 
   <h3>Kampe</h3>
-  {% assign kampe = site.data.kampe | where: 'league', page.team | sort: 'date' %}
+  {% assign kampe = site.data.generated.matches | where: 'league', page.team_id | sort: 'date' %}
   {% if kampe == empty %}
   <p>Ingen kampe fundet</p>
   {% else %}
+  <table class="table" id="matches">
+    <thead>
+      <tr>
+        <th>Dato</th>
+        <th>Tid</th>
+        <th></th>
+        <th>Resultat</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for k in kampe %}
+      {% capture resultat %}
+      {% if k.home_score > 0 and k.away_score > 0 %}
+      {{k.home_score}} - {{k.away_score}}
+      {% else %}
+      &mdash;
+      {% endif %}
+      {% endcapture %}
+      <tr>
+        <td>{{k.dtstart | to_datetime | localize: "%-d. %B, %Y" }}</td>
+        <td>{{k.dtstart | to_datetime | localize: "%H:%M" }}</td>
+        <td>{{k.home_team}} - {{k.away_team}}</td>
+        <td>{{resultat}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
   {% endif %}
   <em>Ovenstående information er hentet fra <a href="http://kampe.dhf.dk/dhf/Turneringer-og-resultater/Hold-Information.aspx?HoldId={{page.team_id}}">DHFs Håndboldinfo</a></em>
   </article>

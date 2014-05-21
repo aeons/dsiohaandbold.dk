@@ -1,0 +1,25 @@
+---
+permalink: /kalender/
+layout: default
+---
+<div class="post-content">
+  <h1>Kalender</h1>
+  <ul>
+    {% for d in site.data.generated.calendar %}
+    {% if d.date > '02014-03-01' %}
+    <li>
+      {{ d.date | to_datetime | localize: '%A %-d. %B, %Y' }}
+      <ul>
+        {% assign matches = d.matches | sort: 'dtstart' %}
+        {% for m in matches %}
+        {% if m.type == 'match' %}
+        {% include calendar_match.html match=m %}
+        {% elsif m.type == 'msg_cup' %}
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</div>

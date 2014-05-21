@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         files: [
           '*.html', '*.yml', '_assets/javascripts/**.js', '_posts/**',
           'pages/**', '_data/**', '_hold/**', '_includes/**', '_layouts/**',
-          '**/*.md'
+          '_plugins/**', '**/*.md'
         ],
         tasks: ['shell:jekyll']
       }

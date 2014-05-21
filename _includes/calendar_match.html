@@ -1,0 +1,9 @@
+{% assign m = include.match %}
+{% if m.home_match %}
+  {% assign home_away = hjemme %}
+  {% assign opponent = m.away_team %}
+{% else %}
+  {% assign home_away = ude %}
+  {% assign opponent = m.home_team %}
+{% endif%}
+<li>{{m.dtstart | date: '%H:%M' }} - {{m.team_name}} spiller {{home_away}} mod {{opponent}}</li>

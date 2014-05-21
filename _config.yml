@@ -6,6 +6,12 @@ baseurl: ""
 url: "http://localhost:4000"
 
 # Build settings
+exclude:
+- Gemfile
+- Gemfile.lock
+- Gruntfile.js
+- node_modules
+- package.json
 markdown: kramdown
 permalink: pretty
 gems:
