@@ -36,16 +36,16 @@ def scrape_standings(league, league_id)
   doc = Nokogiri::HTML(f, nil, 'UTF-8')
   doc.css('tr.srOdd, tr.srEven').each do |tr|
     standings.push({
-      'league'    => league,
-      'team'      => tr.css('td.c02 a').first.content.strip,
-      'position'  => tr.css('td.c01').first.content.strip.to_i,
-      'matches'   => tr.css('td.c04').first.content.strip.to_i,
-      'won'       => tr.css('td.c05').first.content.strip.to_i,
-      'tied'      => tr.css('td.c06').first.content.strip.to_i,
-      'lost'      => tr.css('td.c07').first.content.strip.to_i,
-      'score_out' => tr.css('td.c08').first.content.strip.to_i,
-      'score_in'  => tr.css('td.c10').first.content.strip.to_i,
-      'points'    => tr.css('td.c14').first.content.strip.to_i,
+                     'league'    => league,
+                     'team'      => tr.css('td.c02 a').first.content.strip,
+                     'position'  => tr.css('td.c01').first.content.strip.to_i,
+                     'matches'   => tr.css('td.c04').first.content.strip.to_i,
+                     'won'       => tr.css('td.c05').first.content.strip.to_i,
+                     'tied'      => tr.css('td.c06').first.content.strip.to_i,
+                     'lost'      => tr.css('td.c07').first.content.strip.to_i,
+                     'score_out' => tr.css('td.c08').first.content.strip.to_i,
+                     'score_in'  => tr.css('td.c10').first.content.strip.to_i,
+                     'points'    => tr.css('td.c14').first.content.strip.to_i,
     })
   end
   standings
@@ -80,18 +80,18 @@ def scrape_matches(league, team_name, key)
   cal.events.each do |e|
     s = parse_summary(e.summary)
     matches.push({
-      'league'     => league,
-      'team_name'  => team_name,
-      'uid'        => e.uid.to_s,
-      'dtstart'    => e.dtstart.strftime('%FT%R'),
-      'dtend'      => e.dtend.strftime('%FT%R'),
-      'home_team'  => s['home_team'],
-      'away_team'  => s['away_team'],
-      'home_score' => s['home_score'].to_i,
-      'away_score' => s['away_score'].to_i,
-      'location'   => e.location.to_s,
-      'address'    => parse_address(e.description),
-      'home_match' => !!(s['home_team'] =~ /DSIO/)
+                   'league'     => league,
+                   'team_name'  => team_name,
+                   'uid'        => e.uid.to_s,
+                   'dtstart'    => e.dtstart.strftime('%FT%R'),
+                   'dtend'      => e.dtend.strftime('%FT%R'),
+                   'home_team'  => s['home_team'],
+                   'away_team'  => s['away_team'],
+                   'home_score' => s['home_score'].to_i,
+                   'away_score' => s['away_score'].to_i,
+                   'location'   => e.location.to_s,
+                   'address'    => parse_address(e.description),
+                   'home_match' => !!(s['home_team'] =~ /DSIO/)
     })
   end
   matches
@@ -103,7 +103,8 @@ def create_calendar(matches)
   days.each do |day, ms|
     day_matches = []
     # Check if MSG cup
-    if Date.parse(day).sunday?
+    date = Date.parse(day)
+    if date.saturday? || date.sunday?
       msg_matches = ms.select { |m| m['location'].include?('Munkebjergskolen')}
       # Create msg cup
       if msg_matches.length > 1
@@ -111,11 +112,11 @@ def create_calendar(matches)
         ms = ms.reject { |m| m['location'].include?('Munkebjergskolen')}
         # Create an msg cup
         day_matches.push({
-          'type'    => 'msg_cup',
-          'matches' => msg_matches,
-          'dtstart'   => msg_matches.min_by { |m| m['dtstart']}['dtstart'],
-          'dtend'     => msg_matches.max_by { |m| m['dtend']}['dtend']
-          })
+                           'type'    => 'msg_cup',
+                           'matches' => msg_matches,
+                           'dtstart'   => msg_matches.min_by { |m| m['dtstart']}['dtstart'],
+                           'dtend'     => msg_matches.max_by { |m| m['dtend']}['dtend']
+        })
       end
     end
     ms.each do |m|
@@ -123,9 +124,9 @@ def create_calendar(matches)
       day_matches.push(m)
     end
     calendar.push({
-      'date' => day,
-      'matches' => day_matches
-      })
+                    'date' => day,
+                    'matches' => day_matches
+    })
   end
   calendar.sort_by { |d| d['date']}
 end

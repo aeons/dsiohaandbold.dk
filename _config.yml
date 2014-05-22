@@ -4,6 +4,8 @@ email: mail@dsiohaandbold.dk
 description: "DSIO Håndbold er en håndboldklub for studerende og andre ligesindede i Odense."
 baseurl: ""
 url: "http://localhost:4000"
+encoding: utf-8
+timezone: Europe/Copenhagen
 
 # Build settings
 exclude:
@@ -14,8 +16,9 @@ exclude:
 - package.json
 markdown: kramdown
 permalink: pretty
-gems:
-- jekyll-assets
+
+sass:
+    style: :compressed
 
 collections:
     hold:

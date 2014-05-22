@@ -5,7 +5,7 @@ title: 3. division damer
 team_id: 1-damer
 team_name: 1. damer
 permalink: /hold/1-damer/
-team_photo:
+team_photo: hold-1-damer.jpg
 dhf:
   team_id: 175386
   league_id: 24495

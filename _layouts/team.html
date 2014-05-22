@@ -10,6 +10,21 @@ layout: default
   {{ content }}
 
   <p>Træner(e): {{ page.coaches | array_to_sentence | markdownify }}</p>
+
+  {% if page.team_photo %}
+  <a data-toggle="lightbox" href="#teamphoto">Team photo</a>
+  <div id="teamphoto" class="lightbox fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="lightbox-dialog">
+      <div class="lightbox-content">
+        {{ page.team_photo | image}}
+        <div class="lightbox-caption">
+          <p>{{page.team_name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
   <h3>Stilling</h3>
   {% assign stillinger = site.data.generated.standings | where: 'league', page.team_id | sort: 'position' %}
   {% if stillinger == empty %}
@@ -24,7 +39,7 @@ layout: default
             <th><span class="sort" data-sort="won">V</span></th>
             <th><span class="sort" data-sort="tied">U</span></th>
             <th><span class="sort" data-sort="lost">T</span></th>
-            <th colspan="4">Score</th>
+            <th colspan="4" class="center">Score</th>
             <th><span class="sort" data-sort="points">P</span></th>
         </tr>
     </thead>
@@ -37,10 +52,10 @@ layout: default
             <td class="won">{{s.won}}</td>
             <td class="tied">{{s.tied}}</td>
             <td class="lost">{{s.lost}}</td>
-            <td>{{ s.score_out | minus: s.score_in | positive_plus }}</td>
-            <td>({{s.score_out}}</td>
-            <td>-</td>
-            <td>{{s.score_in}})</td>
+            <td class="score-sum">{{ s.score_out | minus: s.score_in | positive_plus }}</td>
+            <td class="score-out">({{s.score_out}}</td>
+            <td class="score-separator">-</td>
+            <td class="score-in">{{s.score_in}})</td>
             <td class="points">{{s.points}}</td>
         </tr>
         {% endfor %}
@@ -85,5 +100,9 @@ layout: default
   </article>
 </div>
 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
-{% javascript team %}
+
+<script src="/assets/js/bootstrap-lightbox.js"></script>
+<script src="/assets/js/team.js"></script>

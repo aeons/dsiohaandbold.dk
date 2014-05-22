@@ -1,0 +1,9 @@
+{% assign cup = include.msg_cup %}
+<li>Hjemmestævne i Munkebjerg Square Garden ({{cup.dtstart | date: '%H:%M' }} - {{cup.dtend | date: '%H:%M'}})
+  <ul>
+    {% assign matches = cup.matches | sort:'dtstart' %}
+    {% for m in matches%}
+    <li>{{m.dtstart | date: '%H:%M' }} - {{m.team_name}} spiller mod {{m.away_team}}</li>
+    {% endfor %}
+  </ul>
+</li>

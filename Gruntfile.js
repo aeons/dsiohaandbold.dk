@@ -1,12 +1,12 @@
 module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
 
-  // Load all grunt tasks
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  //  grunt-rsync
 
   grunt.initConfig({
     shell: {
       jekyll: {
-        command: 'rm -rf _site; bundle exec jekyll build',
+        command: 'rm -rf _site/*; bundle exec jekyll build',
         stdout: true
       }
     },
@@ -17,9 +17,9 @@ module.exports = function(grunt) {
       },
       jekyllSources: {
         files: [
-          '*.html', '*.yml', '_assets/javascripts/**.js', '_posts/**',
+          '!_site/**', '*.html', '*.yml', '_posts/**',
           'pages/**', '_data/**', '_hold/**', '_includes/**', '_layouts/**',
-          '_plugins/**', '**/*.md'
+          '_plugins/**', '**/*.md', 'assets/**'
         ],
         tasks: ['shell:jekyll']
       }
@@ -47,6 +47,8 @@ module.exports = function(grunt) {
     'open:server',
     'watch'
   ]);
+
+  grunt.registerTask('build', ['shell:jekyll'])
 
   grunt.registerTask('default', 'server');
 };
