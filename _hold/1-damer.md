@@ -11,6 +11,6 @@ dhf:
   league_id: 24495
   ics_key: 57889d7b-539e-43cf-8c76-b474c0808c85
 coaches:
-- "Thomas Rose Christensen"
+- Thomas Rose Christensen
 ---
 1\. damer spiller i 3. division.

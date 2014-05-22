@@ -9,3 +9,5 @@ gem 'facets'
 
 # i18n for dates
 gem 'i18n'
+
+gem 'slugify'

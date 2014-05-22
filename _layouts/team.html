@@ -1,102 +1,119 @@
 ---
 layout: default
 ---
-<div class="post">
+<div class="post row">
   <header class="post-header">
     <h1>{{ page.title }}</h1>
   </header>
 
   <article class="post-content">
-  {{ content }}
+    <section>
+      {{ content }}
+    </section>
 
-  <p>Træner(e): {{ page.coaches | array_to_sentence | markdownify }}</p>
+    {% if page.coaches != empty %}
+    <section>
+      <h4>Trænere</h4>
+        <ul>
+          {% for coach in page.coaches %}
+          <li><a href="{{site.url}}/personer/{{coach | slugify}}">{{coach}}</a></li>
+          {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
 
-  {% if page.team_photo %}
-  <a data-toggle="lightbox" href="#teamphoto">Team photo</a>
-  <div id="teamphoto" class="lightbox fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="lightbox-dialog">
-      <div class="lightbox-content">
-        {{ page.team_photo | image}}
-        <div class="lightbox-caption">
-          <p>{{page.team_name}}</p>
+    {% if page.team_photo %}
+    <section>
+      <a data-toggle="lightbox" href="#teamphoto">
+        <img src="/assets/img/{{page.team_photo}}" class="img-thumbnail img-responsive" alt="{{page.team_name}}" />
+      </a>
+      <div id="teamphoto" class="lightbox fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="lightbox-dialog">
+          <div class="lightbox-content">
+            <img src="/assets/img/{{page.team_photo}}" class="img-responsive" alt="{{page.team_name}}" />
+            <div class="lightbox-caption">
+              <p>{{page.team_name}}</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  {% endif %}
+    </section>
+    {% endif %}
 
-  <h3>Stilling</h3>
-  {% assign stillinger = site.data.generated.standings | where: 'league', page.team_id | sort: 'position' %}
-  {% if stillinger == empty %}
-  <p>Ingen stillinger fundet.</p>
-  {% else %}
-  <table class="table" id="standings">
-    <thead>
-        <tr>
-            <th><span class="sort" data-sort="position">Position</span></th>
-            <th><span class="sort" data-sort="team">Hold</span></th>
-            <th><span class="sort" data-sort="matches">K</span></th>
-            <th><span class="sort" data-sort="won">V</span></th>
-            <th><span class="sort" data-sort="tied">U</span></th>
-            <th><span class="sort" data-sort="lost">T</span></th>
-            <th colspan="4" class="center">Score</th>
-            <th><span class="sort" data-sort="points">P</span></th>
-        </tr>
-    </thead>
-    <tbody class="list">
-        {% for s in stillinger %}
-        <tr>
-            <td class="position">{{s.position}}</td>
-            <td class="team">{{s.team}}</td>
-            <td class="matches">{{s.matches}}</td>
-            <td class="won">{{s.won}}</td>
-            <td class="tied">{{s.tied}}</td>
-            <td class="lost">{{s.lost}}</td>
-            <td class="score-sum">{{ s.score_out | minus: s.score_in | positive_plus }}</td>
-            <td class="score-out">({{s.score_out}}</td>
-            <td class="score-separator">-</td>
-            <td class="score-in">{{s.score_in}})</td>
-            <td class="points">{{s.points}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-  </table>
-  {% endif %}
-
-  <h3>Kampe</h3>
-  {% assign kampe = site.data.generated.matches | where: 'league', page.team_id | sort: 'date' %}
-  {% if kampe == empty %}
-  <p>Ingen kampe fundet</p>
-  {% else %}
-  <table class="table" id="matches">
-    <thead>
-      <tr>
-        <th>Dato</th>
-        <th>Tid</th>
-        <th></th>
-        <th>Resultat</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for k in kampe %}
-      {% capture resultat %}
-      {% if k.home_score > 0 and k.away_score > 0 %}
-      {{k.home_score}} - {{k.away_score}}
-      {% else %}
-      &mdash;
+    <section>
+      {% if stillinger != empty %}
+      <h3>Stilling</h3>
+      {% assign stillinger = site.data.generated.standings | where: 'league', page.team_id | sort: 'position' %}
+      <table class="table" id="standings">
+        <thead>
+            <tr>
+                <th><span class="sort" data-sort="position">Position</span></th>
+                <th><span class="sort" data-sort="team">Hold</span></th>
+                <th><span class="sort" data-sort="matches">K</span></th>
+                <th><span class="sort" data-sort="won">V</span></th>
+                <th><span class="sort" data-sort="tied">U</span></th>
+                <th><span class="sort" data-sort="lost">T</span></th>
+                <th colspan="4" class="center">Score</th>
+                <th><span class="sort" data-sort="points">P</span></th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            {% for s in stillinger %}
+            <tr>
+                <td class="position">{{s.position}}</td>
+                <td class="team">{{s.team}}</td>
+                <td class="matches">{{s.matches}}</td>
+                <td class="won">{{s.won}}</td>
+                <td class="tied">{{s.tied}}</td>
+                <td class="lost">{{s.lost}}</td>
+                <td class="score-sum">{{ s.score_out | minus: s.score_in | positive_plus }}</td>
+                <td class="score-out">({{s.score_out}}</td>
+                <td class="score-separator">-</td>
+                <td class="score-in">{{s.score_in}})</td>
+                <td class="points">{{s.points}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
       {% endif %}
-      {% endcapture %}
-      <tr>
-        <td>{{k.dtstart | to_datetime | localize: "%-d. %B, %Y" }}</td>
-        <td>{{k.dtstart | to_datetime | localize: "%H:%M" }}</td>
-        <td>{{k.home_team}} - {{k.away_team}}</td>
-        <td>{{resultat}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% endif %}
-  <em>Ovenstående information er hentet fra <a href="http://kampe.dhf.dk/dhf/Turneringer-og-resultater/Hold-Information.aspx?HoldId={{page.team_id}}">DHFs Håndboldinfo</a></em>
+    </section>
+
+    <section>
+      {% if kampe != empty %}
+      <h3>Kampe</h3>
+      {% assign kampe = site.data.generated.matches | where: 'league', page.team_id | sort: 'date' %}
+      <table class="table" id="matches">
+        <thead>
+          <tr>
+            <th>Dato</th>
+            <th>Tid</th>
+            <th></th>
+            <th>Resultat</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for k in kampe %}
+          {% capture resultat %}
+          {% if k.home_score > 0 and k.away_score > 0 %}
+          {{k.home_score}} - {{k.away_score}}
+          {% else %}
+          &mdash;
+          {% endif %}
+          {% endcapture %}
+          <tr>
+            <td>{{k.dtstart | to_datetime | localize: "%-d. %B, %Y" }}</td>
+            <td>{{k.dtstart | to_datetime | localize: "%H:%M" }}</td>
+            <td>{{k.home_team}} - {{k.away_team}}</td>
+            <td>{{resultat}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </section>
+    <section>
+      <em>Ovenstående information er hentet fra <a href="http://kampe.dhf.dk/dhf/Turneringer-og-resultater/Hold-Information.aspx?HoldId={{page.team_id}}">DHFs Håndboldinfo</a></em>
+    </section>
   </article>
 </div>
 

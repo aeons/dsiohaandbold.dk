@@ -1,6 +1,7 @@
 require 'i18n'
 I18n.enforce_available_locales = false
 require 'date'
+require 'slugify'
 
 LOCALE = :da
 
@@ -43,6 +44,10 @@ module Filters
       I18n.backend.load_translations(Dir[File.join(File.dirname(__FILE__),'/*.yml')])
       I18n.locale = LOCALE
     end
+  end
+
+  def slugify(input)
+    input.slugify
   end
 end
 
