@@ -24,3 +24,14 @@ sass:
 collections:
     hold:
         output: true
+
+menu:
+- name: Klubben
+  parent: main
+  position: 1
+- name: Hold
+  parent: main
+  position: 2
+- name: Sponsorer
+  parent: main
+  position: 5

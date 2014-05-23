@@ -13,5 +13,9 @@ dhf:
 coaches:
 - Lars Hestehave
 - Tina Glad Thrane
+
+menu:
+  parent: Hold
+  position: 4
 ---
 1\. herrer spiller i serie 1.

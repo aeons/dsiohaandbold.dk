@@ -13,5 +13,9 @@ dhf:
 coaches:
 - Flemming Ottendahl Jakobsen
 - Jacob Boutrup
+
+menu:
+  parent: Hold
+  position: 2
 ---
 2\. damer spiller i serie 1.

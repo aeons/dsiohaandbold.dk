@@ -12,5 +12,9 @@ dhf:
   ics_key: 57889d7b-539e-43cf-8c76-b474c0808c85
 coaches:
 - Thomas Rose Christensen
+
+menu:
+  parent: Hold
+  position: 1
 ---
 1\. damer spiller i 3. division.

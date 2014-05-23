@@ -13,5 +13,9 @@ dhf:
 coaches:
 - Johnny Nielsen
 - Lise Cecilie Dam Poulsen
+
+menu:
+  parent: Hold
+  position: 5
 ---
 2\. herrer spiller i serie 2.

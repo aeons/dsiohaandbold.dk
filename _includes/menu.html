@@ -1,0 +1,14 @@
+{% for m in include.menu.children %}
+{% if m.children == empty %}
+  <li{% if page.permalink == m.href %} class="active"{% endif %}><a href="{{m.href}}">{{m.name}}</a></li>
+{% else %}
+  <li class="dropdown{% for sub in m.children %}{% if page.permalink == sub.href %} active{% endif %}{% endfor %}">
+    <a href="#" class="dropdown-toggle{{active}}" data-toggle="dropdown">
+      {{m.name}} <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      {% include menu.html menu=m %}
+    </ul>
+  </li>
+{% endif %}
+{% endfor %}

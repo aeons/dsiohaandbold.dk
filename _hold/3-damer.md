@@ -11,5 +11,9 @@ dhf:
   league_id: 24593
   ics_key: 5b6522d2-8700-466c-bd2c-a06f35e99af4
 coaches: []
+
+menu:
+  parent: Hold
+  position: 3
 ---
 3\. damer spiller i serie 2.

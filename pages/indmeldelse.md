@@ -2,6 +2,10 @@
 layout: page
 title: Indmeldelse
 permalink: /indmeldelse/
+
+menu:
+  parent: main
+  position: 6
 ---
 Der er **åbent for indmeldelse**.
 
