@@ -11,6 +11,7 @@ Du kan komme i kontakt med DSIO Håndbold på flere måder. Enten ved at bruge k
 
 ## Kontaktformular
 <form role="form" action="//forms.brace.io/mail@dsiohaandbold.dk" method="post">
+  <input type="hidden" name="_next" value="{{site.url}}/kontakt/?type=success&flash=Tak for mailen, vi vender tilbage.">
   <div class="form-group">
     <label for="name">Navn</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Navn">
@@ -25,3 +26,6 @@ Du kan komme i kontakt med DSIO Håndbold på flere måder. Enten ved at bruge k
   </div>
   <button type="submit" class="btn btn-primary">Send</button>
 </form>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/purl/2.3.1/purl.min.js"></script>
+<script src="/assets/js/flash.js"></script>

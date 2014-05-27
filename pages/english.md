@@ -16,6 +16,7 @@ At the moment the men’s teams train Tuesdays at 19:20-21:00 and Thursdays at 2
 
 ## Contact
 <form role="form" action="//forms.brace.io/mail@dsiohaandbold.dk" method="post">
+  <input type="hidden" name="_next" value="{{site.url}}/kontakt/?type=success&flash=Thanks for the email, we will get back to you.">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Name">
@@ -30,3 +31,6 @@ At the moment the men’s teams train Tuesdays at 19:20-21:00 and Thursdays at 2
   </div>
   <button type="submit" class="btn btn-primary">Send</button>
 </form>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/purl/2.3.1/purl.min.js"></script>
+<script src="/assets/js/flash.js"></script>
