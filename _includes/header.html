@@ -1,3 +1,22 @@
-<header class="site-header">
-  {% include navbar.html %}
+<header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Vis menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="{{site.url}}">
+        <img src="/assets/img/logo.png" alt="DSIO Håndbold" />
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        {% include menu.html menu=site.menu %}
+      </ul>
+    </div>
+  </div>
 </header>

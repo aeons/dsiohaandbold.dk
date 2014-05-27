@@ -4,7 +4,7 @@
 {% else %}
   <li class="dropdown{% for sub in m.children %}{% if page.permalink == sub.href %} active{% endif %}{% endfor %}">
     <a href="#" class="dropdown-toggle{{active}}" data-toggle="dropdown">
-      {{m.name}} <b class="caret"></b>
+      {{m.name}} <i class="fa fa-caret-down"></i>
     </a>
     <ul class="dropdown-menu">
       {% include menu.html menu=m %}
