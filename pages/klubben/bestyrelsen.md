@@ -1,6 +1,9 @@
 ---
 title: Bestyrelsen
-permalink: /klubben/bestyrelsen/
+permalink: /bestyrelsen/
 layout: people
+
+menu:
+  parent: Klubben
+  position: 4
 ---
-## Bestyrelsesmedlemmer

@@ -1,7 +1,11 @@
 ---
 layout: page
 title: Om DSIO Håndbold
-permalink: /klubben/om-dsio/
+permalink: /om-dsio/
+
+menu:
+  parent: Klubben
+  position: 2
 ---
 DSIO Håndbold er en klub der på legendarisk vis forstår at kombinere højt boldtempo med sociale aktiviteter. Klubben har lige i øjeblikket fire damehold og to herrehold.
 
