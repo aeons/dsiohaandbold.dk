@@ -18,6 +18,8 @@ exclude:
 markdown: kramdown
 permalink: pretty
 
+gems: ['bootstrap-sass']
+
 sass:
     style: :compressed
 

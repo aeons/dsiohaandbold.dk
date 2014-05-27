@@ -11,3 +11,4 @@ gem 'facets'
 gem 'i18n'
 
 gem 'slugify'
+gem 'bootstrap-sass'
