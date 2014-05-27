@@ -1,6 +1,7 @@
-_site
-_vendor/bundle
 .bundle
 .editorconfig
-node_modules
+.sass-cache
 _data/generated
+_site
+_vendor/bundle
+node_modules

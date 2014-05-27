@@ -1,0 +1,48 @@
+.navbar-inverse {
+  background-color: $secondary;
+  border: none;
+  .navbar-nav {
+    margin-top: 20px;
+    > {
+      li > a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        border-radius: 4px;
+        color: $gray-lighter;
+      }
+      .active, .open {
+        > a {
+          &, &:hover, &:focus {
+            background-color: $secondary-dark;
+          }
+        }
+      }
+    }
+    .dropdown-menu {
+      background-color: $secondary-dark;
+      box-shadow: none;
+      border: 0;
+      padding: 0;
+      margin-top: -3px;
+      border-top-left-radius: 3px;
+      > li {
+        > a {
+          padding: 8px 15px;
+          color: $gray-lighter;
+        }
+        &:hover > a, &:focus > a, &.active > a {
+          background-color: rgba(0, 0, 0, 0.3);
+        }
+        &:last-child > a {
+          border-radius: 0 0 3px 3px;
+        }
+        &.divider {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+  .navbar-collapse, .navbar-form {
+    border-top: 0;
+  }
+}
