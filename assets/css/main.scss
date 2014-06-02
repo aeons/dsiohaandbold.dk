@@ -1,43 +1,22 @@
 ---
 ---
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);
-@import 'bootstrap/variables';
-
-$primary: #f5f5f5;
-$secondary: #de3163;
-$tertiary: #1588ab;
-$secondary-dark: #A74561;
-
-$font-family-sans-serif: 'Roboto', sans-serif;
-$font-family-base:        $font-family-sans-serif;
-$font-size-base: 15px;
-
-//** Background color for `<body>`.
-$body-bg:               $primary;
-//** Global text color on `<body>`.
-$text-color:            #34495e;
-
-//** Global textual link color.
-$link-color:            $tertiary;
-//** Link hover color set via `darken()` function.
-$link-hover-color:      darken($link-color, 15%);
-
-$navbar-height: 80px;
-
+@import 'variables';
 @import 'bootstrap-without-glyphicons';
-
-@import 'header';
 
 body {
   padding-top: 80px;
+  section {
+    padding: 50px 0;
+  }
 }
 
 a {
-  color: $secondary;
   @include transition(300ms);
   &:hover, &:focus {
-    color: $tertiary;
     text-decoration: none;
     outline: none;
   }
 }
+
+@import 'header';
+@import 'footer';

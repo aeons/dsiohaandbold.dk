@@ -1,0 +1,23 @@
+@import "bootstrap/variables";
+
+@import url(http://fonts.googleapis.com/css?family=Kreon:400,700);
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);
+
+$gray-lighte: lighten(black, 75%);
+
+$primary: whitesmoke;
+$secondary: #de3163;
+$tertiary: #1588ab;
+$secondary-dark: #a74561;
+
+$font-family-sans-serif: "Roboto", sans-serif;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: 15px;
+
+$body-bg: $primary;
+$text-color: $gray;
+$link-color: $secondary;
+$link-hover-color: darken($link-color, 15%);
+
+$navbar-height: 80px;

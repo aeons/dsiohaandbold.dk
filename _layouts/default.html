@@ -1,13 +1,12 @@
 {% strip %}
 <!DOCTYPE html>
 <html>
-  {% include head.html %}
-    <body>
-    {% include header.html %}
-    <section class="container">
-      {{ content }}
-    </section>
-    {% include footer.html %}
-    </body>
+{% include head.html %}
+<body>
+  {% include navbar.html %}
+  {% include header.html %}
+  {{content}}
+  {% include footer.html %}
+</body>
 </html>
 {% endstrip %}

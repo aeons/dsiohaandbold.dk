@@ -1,0 +1,38 @@
+---
+---
+@import 'variables';
+
+@font-face {
+  font-family: 'storybook';
+  src: url("/assets/fonts/storybook-webfont.eot");
+  src: url("/assets/fonts/storybook-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/storybook-webfont.woff") format("woff"), url("/assets/fonts/storybook-webfont.ttf") format("truetype"), url("/assets/fonts/storybook-webfont.svg#storybookregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'timeless';
+  src: url("/assets/fonts/timeless-light-webfont.eot");
+  src: url("/assets/fonts/timeless-light-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/timeless-light-webfont.woff") format("woff"), url("/assets/fonts/timeless-light-webfont.ttf") format("truetype"), url("/assets/fonts/timeless-light-webfont.svg#timelessef-lightregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo {
+  &-header {
+    &-text {
+      font-size: 90px;
+      font-family: "storybook", sans-serif;
+    }
+    &-sub-text {
+      font-size: 60px;
+      font-family: "timeless", serif;
+    }
+  }
+  &-fg {
+    fill: $secondary;
+  }
+  &-bg {
+    fill: $primary;
+  }
+}

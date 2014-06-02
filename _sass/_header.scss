@@ -1,21 +1,20 @@
-.navbar-inverse {
+nav.navbar-inverse {
   background-color: $secondary;
   border: none;
   .navbar-nav {
     margin-top: 20px;
-    > {
-      li > a {
+    li {
+      border-radius: 4px;
+      a {
         padding-top: 7px;
         padding-bottom: 7px;
         border-radius: 4px;
-        color: $gray-lighter;
+        color: $primary;
       }
-      .active, .open {
-        > a {
-          &, &:hover, &:focus {
-            background-color: $secondary-dark;
-          }
-        }
+    }
+    .active, .open {
+      a, a:hover, a:focus {
+        background-color: $secondary-dark;
       }
     }
     .dropdown-menu {
@@ -25,24 +24,51 @@
       padding: 0;
       margin-top: -3px;
       border-top-left-radius: 3px;
-      > li {
-        > a {
+      li {
+        a {
           padding: 8px 15px;
-          color: $gray-lighter;
+          color: $primary;
+          border-radius: 0;
         }
         &:hover > a, &:focus > a, &.active > a {
           background-color: rgba(0, 0, 0, 0.3);
         }
+        &:first-child > a {
+          border-radius: 3px 0 0 0;
+        }
         &:last-child > a {
           border-radius: 0 0 3px 3px;
-        }
-        &.divider {
-          background-color: rgba(0, 0, 0, 0.1);
         }
       }
     }
   }
   .navbar-collapse, .navbar-form {
     border-top: 0;
+  }
+  // Fix svg as link
+  a.navbar-brand {
+    position: relative;
+    display: inline-block;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+  .navbar-brand {
+    > span {
+      color: $primary;
+      font-family: "Kreon", sans-serif;
+      font-size: 56px;
+      line-height: 50px;
+      vertical-align: top;
+    }
+    #logo {
+      height: 50px;
+      width: auto;
+    }
   }
 }
